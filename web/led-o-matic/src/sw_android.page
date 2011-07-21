@@ -1,0 +1,34 @@
+---
+title: Native client for android
+in_menu: false
+sort_info: 25
+---
+## Android client
+
+The sense of a new project for andorid remote client was given by need:
+
+* learn programing for android
+* building a software running on variety of androids, inpedent on resolution and hardware
+* discovering of advantages for writing native android code
+
+## Screen
+The basic screen for remote consists from:
+
+* ColorWheel - view wich enables selct color from whole RGB color spectrum
+* ButtonsPad - predefined colors as Buttons [Web colors](http://wikipedia.org)
+* IntensitySlider - defines intisty of color
+
+### Layouts
+
+Androd offers with separated layouts in XML files great posibility to write software running seamlessly 
+on variety of devices. Testing with:
+
+* T-Mobile G1 running the stock 1.6 firmware
+* HTC Desire
+
+Every View has its own separate file and different layouts have been created by utilizing of 
+include and merge tags as described [Android Layout Tricks #2: Reusing layouts](http://android-developers.blogspot.com/2009/02/android-layout-tricks-2-reusing-layouts.html).
+
+
+#### Screen orientation
+The landscape and portraitt have a different layouts. 

@@ -1,0 +1,32 @@
+---
+title: led-o-matic ADK
+in_menu: true
+routed_title: led-o-matic-adk
+---
+## Android ADK Challenge
+
+<b>led-omatic ADK</b> is my submision to the II. round for the <i>Android ADK Challenge</i> for Google Developer Day 
+Berlin 2011. 
+
+### Mission
+Music + Android + Arduino + Open => pure fun . 
+
+### Block scheme
+![led-omatic-block](/img/device_blok.png)
+
+With android open accessory capable device(phone, tablet) can <b>led-o-matic ADK</b> control 
+3 RGB SMD stripes independently. A desire color on any RGB stripe is achived by mixing of intensity
+of basic colors on the stripe(red, green, blue). The Intesity is controlled with <i>Pulse Wide Modulation(PWM)</i>
+
+This is extension of existing device [led-o-matic](http://ledomatic.com).
+
+<b>led-o-matic ADK</b> is arduino MEGA based device controlled with android device over USB cable.
+
+### Licence
+
+<b>led-o-matic ADK</b> is open source and open hardware.
+
+The initial work on the original device was almost completely done by geeks [team](http://ledomatic.com/team.html) 
+on Google developer days boot camp in Munich, Germany in November 2010. 
+The extension to the Open Android Accesory was possible thanks following [people](credits.html).
+

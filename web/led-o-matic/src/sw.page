@@ -1,0 +1,42 @@
+---
+title: Software
+in_menu: true
+sort_info: 25
+---
+## Software
+
+## led-o-matic device
+
+### arduino firmware
+
+on arduino runs AnalogFirmata firmware without any modifications. The software is distributed with samples with Arduino IDE software.
+
+### Seagate dockstar
+
+Next piece of software should run on Dockstar from Seagate with openwrt as OS running on it. 
+A simple python script sends html requests to server for getting a desired color a sending new analog 
+values for R,G,B channels to arduino over USB with firmata protocol. But the first Seagate device didn't
+stand my apemts to get OpneWrt running and 4 day before Christmas justs failed. So it was time for the plan B
+and old gut NSLU2 from basement did it. 
+
+## server
+server stores required color from remote device and gets it back to the led-o-matic device on request.
+The server is implemented on http protocol with RESTfull architecture, so color changes are posible 
+with simple http requestests as folows:
+
+    curl -X POST -i -d "color=ff0000" http://led-o-matic.server.com/rr/L1/RGB/0
+    
+## Remote clients
+The first remote client was written as native code for android. But the use of simple web 
+technolgies and protocol asks for writen of a cool html5 remote. Even google on the 
+google devloper days 2010 didn't get the ultimative answer to th equestion native or html, so we have
+written both.
+
+## native remote client for android
+This client was written already on the beging by Michael Vogt and Michael Ludwig. 
+I made only minor changes before Christmas 2010.
+
+The project waken up my interests to write for android, so i january I decided to write a new 
+[client from scratch](sw_android.html)  and finally got serious reson for a new Nexus One ;-)
+
+
