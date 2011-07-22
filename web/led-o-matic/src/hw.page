@@ -4,18 +4,17 @@ in_menu: true
 sort_info: 25
 ---
 ## Hardware
-![led-omatic-block](/img/device_blok.png)
-With sound-o-matic ADK 
-sound-o-matic controls independly 3 RGB SMD stripes. 
 
-Led-o-matic ADK is simple device acting for andorid device as USB-HOST with enables over USB 
-Led-o-matic ADK consist of folowing parts:
+### Simplified schema
+
+![simplified schema](/img/schema.png)
+
+
+### List of material
   * Android Open Accessories capable device
   * Android Develpment Kit - Arduino Mega+USBHost 
   * 3xLED Amplifier Repeater 12V für RGB SMD Strip
-  * 12V 3x35W Power supply
- 
+  * 12V 3x35W Power supply (switch power supply from PC?)
+
  
 
-
-###
