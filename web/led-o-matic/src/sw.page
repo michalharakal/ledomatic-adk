@@ -5,4 +5,36 @@ sort_info: 25
 ---
 ## Software
 
+### Android
+Android device takes care of sound recording, audio signal analysis, on device visualisation and 
+communication with the *light unit* over an open accessory protocol. 
 
+#### sound recording + analysis
+<pre>
+ // src: http://stackoverflow.com/questions/5774104/android-audio-fft-to-retrieve-specific-frequency-magnitude-using-audiorecord
+ int channel_config = AudioFormat.CHANNEL_CONFIGURATION_MONO;
+ int format = AudioFormat.ENCODING_PCM_16BIT;
+ int sampleSize = 8000;
+ int bufferSize = AudioRecord.getMinBufferSize(sampleSize, channel_config, format);
+ AudioRecord audioInput = new AudioRecord(AudioSource.MIC, sampleSize, channel_config, format, bufferSize);
+ // read audio    
+ double[] audioBuffer = new short[bufferSize];
+ audioInput.startRecording();
+ audioInput.read(audioBuffer, 0, bufferSize);
+</pre>
+
+Projects as inspiration:
+
+  * [javaFFT](http://introcs.cs.princeton.edu/97data/FFT.java)
+  * [Audalyzer](http://code.google.com/p/moonblink/wiki/Audalyzer)
+  * [firmata](http://firmata.org/wiki/Main_Page) for porting to *Android Open Accessory*
+  
+Despite of many project I can learn and profit from, there is still enough place for innovation 
+(colours alignment to frequencies, visualisation, UI for tablet, etc.)  
+
+### *light unit* with arduino
+The heart of the *light unit* is Arduino MEGA + USB Host shield (aka *Android Open Accessory Development Kit* ).
+The most beautiful thing on this project is the generic firmata protocol. A firmata client sees 
+the *light unit* as the generic "firmata" device with 9 analog outputs. Arduino IDE from the version 0022
+delivers the code for firmata as an example. Just minor modifications are required to get it working with 
+Android Open Accessory protocol.

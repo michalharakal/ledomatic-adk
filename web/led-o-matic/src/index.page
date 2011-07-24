@@ -5,28 +5,33 @@ routed_title: led-o-matic-adk
 ---
 ## Android ADK Challenge
 
-<b>led-omatic ADK</b> is my submision to the II. round for the <i>Android ADK Challenge</i> for Google Developer Day 
+**led-o-matic ADK** is my submision to the II. round for the *Android ADK Challenge* for Google Developer Day 
 Berlin 2011. 
 
-### Mission
-Music + Android + Arduino + Open => pure fun . 
+##Idea
+**led-o-matic adk** is music-to-colour light converter. It consist of 3 basic parts:
 
-### Block scheme
-![led-omatic-block](/img/device_blok.png)
+  * android device for sound input, analysis and visualisation
+  * *light unit* for electrical control of LED stripes
+  * LED RGB stripes
+  
+An Android device (phone or tablet) with Android Open Accessory support records music over device's 
+microphone. It analyses the sound's spectrum in a real time and calculates the desired colour for 3 bandwidth areas. 
+The desired colour is sent with generic protocol ([firmata](http://firmata.org/wiki/Main_Page)) over a USB cable 
+to the *light unit*, which physically controls LED RGB stripes. *Light unit* can control the intensity 
+of the every colour on the every channel with 9 PWM outputs on *Android Open Accessory Development Kit*, 
+so you can get 3 various colours on 3 LED RGB stripes.
 
-With android open accessory capable device(phone, tablet) can <b>led-o-matic ADK</b> control 
-3 RGB SMD stripes independently. A desire color on any RGB stripe is achived by mixing of intensity
-of basic colors on the stripe(red, green, blue). The Intesity is controlled with <i>Pulse Wide Modulation(PWM)</i>
+![simplified block](img/device_blok.png)
 
-This is extension of existing device [led-o-matic](http://ledomatic.com).
-
-<b>led-o-matic ADK</b> is arduino MEGA based device controlled with android device over USB cable.
+##History
+**led-o-matic adk** is an extension to the already existing and running device [led-o-matic](http://ledomatic.com).
+The initial work on the software for the original device was almost completely done by geeks [team](http://ledomatic.com/team.html) 
+on Google developer days boot camp in Munich, Germany in November 2010. 
 
 ### Licence
 
-<b>led-o-matic ADK</b> is open source and open hardware.
+*led-o-matic ADK* is open source and open hardware. 
 
-The initial work on the original device was almost completely done by geeks [team](http://ledomatic.com/team.html) 
-on Google developer days boot camp in Munich, Germany in November 2010. 
-The extension to the Open Android Accesory was possible thanks following [people](credits.html).
+
 

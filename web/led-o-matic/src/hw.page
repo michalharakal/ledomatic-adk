@@ -9,12 +9,16 @@ sort_info: 25
 
 ![simplified schema](/img/schema.png)
 
-
 ### List of material
   * Android Open Accessories capable device
-  * Android Develpment Kit - Arduino Mega+USBHost 
-  * 3xLED Amplifier Repeater 12V für RGB SMD Strip
-  * 12V 3x35W Power supply (switch power supply from PC?)
+  * pin headers for wiring Arduino and amplifiers
+  * Android Development Kit - Arduino Mega+USBHost 
+  * 3xLED Amplifier-Repeater 12V for RGB SMD Strip
+  * LED stripe
+  * 12V 3x35W Power supply (PC power supply)
+  * wires, connecters
+  * Box for *light unit*
+
 
  
 
