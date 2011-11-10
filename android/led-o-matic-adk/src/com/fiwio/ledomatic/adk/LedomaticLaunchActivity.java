@@ -1,8 +1,5 @@
 package com.fiwio.ledomatic.adk;
 
-import com.google.android.DemoKit.DemoKitPhone;
-import com.google.android.DemoKit.DemoKitTablet;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -17,10 +14,11 @@ public class LedomaticLaunchActivity extends Activity {
 		Display display = activity.getWindowManager().getDefaultDisplay();
 		int maxExtent = Math.max(display.getWidth(), display.getHeight());
 
-		Intent intent;
+		Intent intent = null;
 		if (maxExtent > 1200) {
 			Log.i(TAG, "starting tablet ui");
-			intent = new Intent(activity, LedomaticTablet.class);
+			// TODO tablet support
+			// intent = new Intent(activity, LedomaticTablet.class);
 		} else {
 			Log.i(TAG, "starting phone ui");
 			intent = new Intent(activity, LedomaticPhone.class);

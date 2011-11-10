@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, UsbAccessoryActivity!</string>
     <string name="app_name">Led-o-matic-adk</string>
+    <string name="no_device">no ledomatic</string>
+        
 
 </resources>
