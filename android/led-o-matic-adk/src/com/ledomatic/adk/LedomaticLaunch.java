@@ -1,4 +1,4 @@
-package com.fiwio.ledomatic.adk;
+package com.ledomatic.adk;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 
-public class LedomaticLaunchActivity extends Activity {
-	static final String TAG = "LedomaticLaunchActivity";
+public class LedomaticLaunch extends Activity {
+	static final String TAG = "LedomaticLaunch";
 
 	static Intent createIntent(Activity activity) {
 		Display display = activity.getWindowManager().getDefaultDisplay();

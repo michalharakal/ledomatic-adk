@@ -1,4 +1,4 @@
-package com.fiwio.ledomatic.adk;
+package com.ledomatic.adk;
 
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
@@ -155,15 +155,7 @@ public class LedomaticActivity extends Activity {
 	}
 
 	protected void enableControls(boolean enable) {
-	}
-
-	private int composeInt(byte hi, byte lo) {
-		int val = (int) hi & 0xff;
-		val *= 256;
-		val += (int) lo & 0xff;
-		return val;
-	}
-
+	}	
 	
 	public void sendCommand(byte command, byte target, int value) {
 		byte[] buffer = new byte[3];

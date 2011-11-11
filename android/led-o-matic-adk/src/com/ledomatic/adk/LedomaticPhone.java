@@ -1,4 +1,4 @@
-package com.fiwio.ledomatic.adk;
+package com.ledomatic.adk;
 
 import android.os.Bundle;
 import android.view.Menu;

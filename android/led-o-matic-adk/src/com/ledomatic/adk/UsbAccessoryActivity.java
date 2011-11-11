@@ -1,4 +1,4 @@
-package com.fiwio.ledomatic.adk;
+package com.ledomatic.adk;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -14,7 +14,7 @@ public class UsbAccessoryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Intent intent = LedomaticLaunchActivity.createIntent(this);
+		Intent intent = LedomaticLaunch.createIntent(this);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		try {
