@@ -19,38 +19,12 @@
 #define  LED1_GREEN     10
 #define  LED1_BLUE      9
 
-#define  SERVO1         11
-#define  SERVO2         12
-#define  SERVO3         13
-
-#define  TOUCH_RECV     14
-#define  TOUCH_SEND     15
-
-#define  RELAY1         A0
-#define  RELAY2         A1
-
-#define  LIGHT_SENSOR   A2
-#define  TEMP_SENSOR    A3
-
-#define  BUTTON1        A6
-#define  BUTTON2        A7
-#define  BUTTON3        A8
-
-#define  JOY_SWITCH     A9      // pulls line down when pressed
-#define  JOY_nINT       A10     // active low interrupt input
-#define  JOY_nRESET     A11     // active low reset output
-
-AndroidAccessory acc("Google, Inc.",
-		     "DemoKit",
-		     "DemoKit Arduino Board",
+AndroidAccessory acc("Fiwio.com",
+		     "ledomatic",
+		     "Ledomatic ADK",
 		     "1.0",
-		     "http://www.android.com",
+		     "http://www.ledomatic.com",
 		     "0000000012345678");
-Servo servos[3];
-
-// 10M ohm resistor on demo shield
-CapSense   touch_robot = CapSense(TOUCH_SEND, TOUCH_RECV);
-
 void setup();
 void loop();
 
@@ -130,18 +104,7 @@ void loop()
 					analogWrite(LED3_GREEN, 255 - msg[2]);
 				else if (msg[1] == 0x8)
 					analogWrite(LED3_BLUE, 255 - msg[2]);
-				else if (msg[1] == 0x10)
-					servos[0].write(map(msg[2], 0, 255, 0, 180));
-				else if (msg[1] == 0x11)
-					servos[1].write(map(msg[2], 0, 255, 0, 180));
-				else if (msg[1] == 0x12)
-					servos[2].write(map(msg[2], 0, 255, 0, 180));
-			} else if (msg[0] == 0x3) {
-				if (msg[1] == 0x0)
-					digitalWrite(RELAY1, msg[2] ? HIGH : LOW);
-				else if (msg[1] == 0x1)
-					digitalWrite(RELAY2, msg[2] ? HIGH : LOW);
-			}
+}
 		}
 
 		msg[0] = 0x1;
