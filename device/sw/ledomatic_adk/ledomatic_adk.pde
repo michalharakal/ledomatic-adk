@@ -72,42 +72,41 @@ void loop()
 	byte err;
 	byte idle;
 	static byte count = 0;
-	byte msg[3];
-	long touchcount;
-
+	byte msg[9];
+	
 	if (acc.isConnected()) {
 		int len = acc.read(msg, sizeof(msg), 1);
-		int i;
-		byte b;
-		uint16_t val;
-		int x, y;
-		char c0;
+
+                
+
 
 		if (len > 0) {
-			// assumes only one command per packet
-			if (msg[0] == 0x2) {
-				if (msg[1] == 0x0)
-					analogWrite(LED1_RED, 255 - msg[2]);
-				else if (msg[1] == 0x1)
-					analogWrite(LED1_GREEN, 255 - msg[2]);
-				else if (msg[1] == 0x2)
-					analogWrite(LED1_BLUE, 255 - msg[2]);
-				else if (msg[1] == 0x3)
-					analogWrite(LED2_RED, 255 - msg[2]);
-				else if (msg[1] == 0x4)
-					analogWrite(LED2_GREEN, 255 - msg[2]);
-				else if (msg[1] == 0x5)
-					analogWrite(LED2_BLUE, 255 - msg[2]);
-				else if (msg[1] == 0x6)
-					analogWrite(LED3_RED, 255 - msg[2]);
-				else if (msg[1] == 0x7)
-					analogWrite(LED3_GREEN, 255 - msg[2]);
-				else if (msg[1] == 0x8)
-					analogWrite(LED3_BLUE, 255 - msg[2]);
-}
-		}
+  /*
+                       Serial.print("\r\n Data length: ");
+                       Serial.print(msg[0], DEC);
+                       Serial.print(msg[1], DEC);
+                       Serial.print(msg[2], DEC);
+                       Serial.print(msg[3], DEC);
+                       Serial.print(msg[4], DEC);
+                       Serial.print(msg[5], DEC);
+                       Serial.print(msg[6], DEC);
 
-		msg[0] = 0x1;
+                       Serial.print(msg[7], DEC);
+                       Serial.print(msg[8], DEC);
+                       */
+
+			// assumes only one command per packet
+			  analogWrite(LED1_RED, 255 - msg[0]);
+  			  analogWrite(LED1_GREEN, 255 - msg[1]);
+					analogWrite(LED1_BLUE, 255 - msg[2]);
+					analogWrite(LED2_RED, 255 - msg[3]);
+					analogWrite(LED2_GREEN, 255 - msg[4]);
+					analogWrite(LED2_BLUE, 255 - msg[5]);
+					analogWrite(LED3_RED, 255 - msg[6]);
+					analogWrite(LED3_GREEN, 255 - msg[7]);
+					analogWrite(LED3_BLUE, 255 - msg[8]);
+
+		}
 
 		
 	} else {

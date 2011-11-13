@@ -20,7 +20,7 @@ public class UsbAccessoryActivity extends Activity {
 		try {
 			startActivity(intent);
 		} catch (ActivityNotFoundException e) {
-			Log.e(TAG, "unable to start DemoKit activity", e);
+			Log.e(TAG, "unable to start Ledomatic activity", e);
 		}
 		finish();
 	}
