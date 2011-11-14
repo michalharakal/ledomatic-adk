@@ -208,24 +208,24 @@ public class LedomaticService extends Service implements Runnable {
         frame = new byte[9];
         Arrays.fill(frame, (byte) 0);
         byte red = getWeight(mBytes[10], (byte)0xc0, (byte)6);
-        byte green = getWeight(mBytes[10], (byte)0x1c, (byte)3);
-        byte blue = getWeight(mBytes[10], (byte)0x03, (byte)0);
+        byte green = 0;//getWeight(mBytes[10], (byte)0x1c, (byte)3);
+        byte blue = 0;//getWeight(mBytes[10], (byte)0x03, (byte)0);
         
         frame[0] = red;
         frame[1] = green;
         frame[2] = blue;
         
-        red = getWeight(mBytes[100], (byte)0xc0, (byte)6);
-        green = getWeight(mBytes[100], (byte)0x1c, (byte)3);
+        red = 0;// getWeight(mBytes[100], (byte)0xc0, (byte)6);
+        green = 0; // getWeight(mBytes[100], (byte)0x1c, (byte)3);
         blue = getWeight(mBytes[100], (byte)0x03, (byte)0);
         
         frame[3] = red;
         frame[4] = green;
         frame[5] = blue;
         
-        red = getWeight(mBytes[200], (byte)0xc0, (byte)6);
+        red =  0;//getWeight(mBytes[200], (byte)0xc0, (byte)6);
         green = getWeight(mBytes[200], (byte)0x1c, (byte)3);
-        blue = getWeight(mBytes[200], (byte)0x03, (byte)0);
+        blue = 0;//getWeight(mBytes[200], (byte)0x03, (byte)0);
         
         frame[6] = red;
         frame[7] = green;
