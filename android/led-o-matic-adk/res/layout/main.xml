@@ -17,4 +17,11 @@
     	android:onClick="onPlayBtnClick"
 	    android:text="Button" />
 
+  <com.ledomatic.adk.widgets.VisualizerView
+    android:id="@+id/ledomatic"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" />
+    
+   
+
 </LinearLayout>

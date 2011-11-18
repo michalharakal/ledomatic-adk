@@ -6,25 +6,18 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.ledomatic.adk.widgets.VisualizerView;
+
 public class LedomaticPhone extends BaseActivity implements OnClickListener {
 	static final String TAG = "LedomaticPhone";
 	
 	private TextView text = null;
 	private Button button = null;
-	
-	
-	
-	
-	
+	private VisualizerView mVisualizerView;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-	     
-	       
-
-	
-		hideControls();
+			hideControls();
 	}
 	
 	@Override
@@ -33,6 +26,8 @@ public class LedomaticPhone extends BaseActivity implements OnClickListener {
 
 		text = (TextView) findViewById(R.id.text1);
 		button = (Button) findViewById(R.id.button1);
+		mVisualizerView = (VisualizerView) findViewById(R.id.ledomatic);
+		mVisualizerView.setActivity(this);
 		
 		button.setText("Play sample");
 	    text.setText("Capturing audio out...");
