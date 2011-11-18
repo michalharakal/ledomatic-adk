@@ -21,6 +21,9 @@ import android.widget.Toast;
 
 import com.android.future.usb.UsbAccessory;
 import com.android.future.usb.UsbManager;
+import com.ledomatic.adk.utils.HSV;
+import com.ledomatic.adk.utils.HSV2RGB;
+import com.ledomatic.adk.utils.RGB;
 import com.ledomatic.adk.widgets.VisualizerView;
 
 public class LedomaticService extends Service implements Runnable {
@@ -214,29 +217,41 @@ public class LedomaticService extends Service implements Runnable {
 		byte[] frame;
 		frame = new byte[9];
 		Arrays.fill(frame, (byte) 0);
-		int red = getWeight(mBytes[10], (byte)0xc0, (byte)6);
-		int green = getWeight(mBytes[10], (byte)0x1c, (byte)3);
-		int blue = getWeight(mBytes[10], (byte)0x03, (byte)0);
+		
+		
+		HSV c1_hsv = new HSV();
+		c1_hsv.setH((mBytes[10] * 360) / 255);
+		c1_hsv.setS(100);
+		if (mBytes[10] > 0)
+		  c1_hsv.setV(100);
+		RGB c1_rgb = HSV2RGB.convert(c1_hsv);
+	
+		frame[0] = (byte)Math.ceil(c1_rgb.getR());
+		frame[1] = (byte)Math.ceil(c1_rgb.getG());
+		frame[2] = (byte)Math.ceil(c1_rgb.getB());
 
-		frame[0] = (byte)red;
-		frame[1] = (byte)green;
-		frame[2] = (byte)blue;
+		c1_hsv.setH((mBytes[100] * 360) / 255);
+		c1_hsv.setS(100);
+    	c1_hsv.setV(0);
+		if (mBytes[10] > 0)
+		  c1_hsv.setV(100);
+		c1_rgb = HSV2RGB.convert(c1_hsv);
+	
+		frame[3] = (byte)Math.ceil(c1_rgb.getR());
+		frame[4] = (byte)Math.ceil(c1_rgb.getG());
+		frame[5] = (byte)Math.ceil(c1_rgb.getB());
+		
+		c1_hsv.setH((mBytes[200] * 360) / 255);
+		c1_hsv.setS(100);
+    	c1_hsv.setV(0);
+		if (mBytes[10] > 0)
+		  c1_hsv.setV(100);
+		c1_rgb = HSV2RGB.convert(c1_hsv);
+	
+		frame[6] = (byte)Math.ceil(c1_rgb.getR());
+		frame[7] = (byte)Math.ceil(c1_rgb.getG());
+		frame[8] = (byte)Math.ceil(c1_rgb.getB());
 
-		red = getWeight(mBytes[100], (byte)0xc0, (byte)6);
-		green = getWeight(mBytes[100], (byte)0x1c, (byte)3);
-		blue = getWeight(mBytes[100], (byte)0x03, (byte)0);
-
-		frame[3] = (byte)red;
-		frame[4] = (byte)green;
-		frame[5] = (byte)blue;
-
-		red =  getWeight(mBytes[200], (byte)0xc0, (byte)6);
-		green = getWeight(mBytes[200], (byte)0x1c, (byte)3);
-		blue = getWeight(mBytes[200], (byte)0x03, (byte)0);
-
-		frame[6] = (byte)red;
-		frame[7] = (byte)green;
-		frame[8] = (byte)blue;
 
 		if (mVisualizerView != null) {
 			int[] colors = new int[3];
