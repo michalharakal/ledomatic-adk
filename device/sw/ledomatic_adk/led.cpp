@@ -12,6 +12,14 @@ Led::Led(int r_pin, int g_pin, int b_pin, int color)
   _g_pin = g_pin;
   _b_pin  = b_pin;
 
+  // init pins to PWM  
+  digitalWrite(_r_pin, 1);
+  digitalWrite(_g_pin, 1);
+  digitalWrite(_b_pin, 1);
+
+  pinMode(_r_pin, OUTPUT);
+  pinMode(_g_pin, OUTPUT);
+  pinMode(_b_pin, OUTPUT);
 }
 
 #define RED 100
@@ -33,9 +41,9 @@ static unsigned int colors[][3] = {
 
 void Led::rgb_set( int r, int g, int b )
 {
-  analogWrite(_r_pin, 255- r);
-  analogWrite(_g_pin, 255-g);
-  analogWrite(_b_pin, 255-b);
+  analogWrite(_r_pin, 255 - r);
+  analogWrite(_g_pin, 255 - g);
+  analogWrite(_b_pin, 255 - b);
 }
 
 
@@ -55,6 +63,10 @@ void Led::change_color( void )
        // TODO check map function from arduino
        // long map(long x, long in_min, long in_max, long out_min, long out_max)
        // http://www.arduino.cc/en/Reference/Map
+       // long map(long x, long in_min, long in_max, long out_min, long out_max)
+       // {
+       //  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+       // }
 	
 	unsigned int r = ( r1 * (MAX_STEP - _step) / MAX_STEP + r2 * _step / MAX_STEP ) * _level / MAX_LEVEL;
 	unsigned int g = ( g1 * (MAX_STEP - _step) / MAX_STEP + g2 * _step / MAX_STEP ) * _level / MAX_LEVEL;
