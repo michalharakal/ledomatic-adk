@@ -5,7 +5,7 @@
 #include <Usb.h>
 #include <AndroidAccessory.h>
 
-#include <CapSense.h>
+#include "led.h"
 
 #define  LED3_RED       2
 #define  LED3_GREEN     4
@@ -18,6 +18,15 @@
 #define  LED1_RED       8
 #define  LED1_GREEN     10
 #define  LED1_BLUE      9
+
+int rpin = LED1_RED;
+int gpin = LED1_GREEN;
+int bpin = LED1_BLUE;
+
+Led ch1(LED1_RED, LED1_GREEN, LED1_BLUE, 0);
+Led ch2(LED2_RED, LED2_GREEN, LED2_BLUE, 1);
+Led ch3(LED3_RED, LED3_GREEN, LED3_BLUE, 2);
+
 
 AndroidAccessory acc("Fiwio.com",
 		     "ledomatic",
@@ -111,15 +120,10 @@ void loop()
 		
 	} else {
 		// reset outputs to default values on disconnect
-		analogWrite(LED1_RED, 240);
-		analogWrite(LED1_GREEN, 255);
-		analogWrite(LED1_BLUE, 255);
-		analogWrite(LED2_RED, 255);
-		analogWrite(LED2_GREEN, 240);
-		analogWrite(LED2_BLUE, 255);
-		analogWrite(LED3_RED, 255);
-		analogWrite(LED3_GREEN, 255);
-		analogWrite(LED3_BLUE, 240);
+          ch1.change_color();
+          ch2.change_color();
+          ch3.change_color();
+
 		
 	}
 
