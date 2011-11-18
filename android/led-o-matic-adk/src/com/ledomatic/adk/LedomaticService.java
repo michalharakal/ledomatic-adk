@@ -4,6 +4,7 @@ import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.app.PendingIntent;
@@ -21,9 +22,6 @@ import android.widget.Toast;
 
 import com.android.future.usb.UsbAccessory;
 import com.android.future.usb.UsbManager;
-import com.ledomatic.adk.utils.HSV;
-import com.ledomatic.adk.utils.HSV2RGB;
-import com.ledomatic.adk.utils.RGB;
 import com.ledomatic.adk.widgets.VisualizerView;
 
 public class LedomaticService extends Service implements Runnable {
@@ -200,10 +198,6 @@ public class LedomaticService extends Service implements Runnable {
 
 	}
 	private byte[] mBytes;
-	
-	private byte getWeight(byte value, byte weight, byte shift) {
-		return (byte)((value & weight) >> shift);
-	}
 
 	private void updateMatrix(byte[] bytes){
 		mBytes = bytes;
@@ -211,46 +205,26 @@ public class LedomaticService extends Service implements Runnable {
 
 		mVisualizerView = VisualizerView.getInstance();
 
-		
+		ArrayList<Double> mClearDouble = new ArrayList<Double>();
 
+		// calc magnitude from data
+		// see here abouta raw data description http://developer.android.com/reference/android/media/audiofx/Visualizer.html#getFft%28byte%5B%5D%29
+		for (int i = 2; i <= 66; i = i + 2) {
+			mClearDouble.add((double) 10
+					* Math.log((mBytes[i] * mBytes[i]) + (mBytes[i + 1] * mBytes[i + 1])));
+		}
 
 		byte[] frame;
 		frame = new byte[9];
 		Arrays.fill(frame, (byte) 0);
-		
-		
-		HSV c1_hsv = new HSV();
-		c1_hsv.setH((mBytes[10] * 360) / 255);
-		c1_hsv.setS(100);
-		if (mBytes[10] > 0)
-		  c1_hsv.setV(100);
-		RGB c1_rgb = HSV2RGB.convert(c1_hsv);
-	
-		frame[0] = (byte)Math.ceil(c1_rgb.getR());
-		frame[1] = (byte)Math.ceil(c1_rgb.getG());
-		frame[2] = (byte)Math.ceil(c1_rgb.getB());
 
-		c1_hsv.setH((mBytes[100] * 360) / 255);
-		c1_hsv.setS(100);
-    	c1_hsv.setV(0);
-		if (mBytes[10] > 0)
-		  c1_hsv.setV(100);
-		c1_rgb = HSV2RGB.convert(c1_hsv);
-	
-		frame[3] = (byte)Math.ceil(c1_rgb.getR());
-		frame[4] = (byte)Math.ceil(c1_rgb.getG());
-		frame[5] = (byte)Math.ceil(c1_rgb.getB());
-		
-		c1_hsv.setH((mBytes[200] * 360) / 255);
-		c1_hsv.setS(100);
-    	c1_hsv.setV(0);
-		if (mBytes[10] > 0)
-		  c1_hsv.setV(100);
-		c1_rgb = HSV2RGB.convert(c1_hsv);
-	
-		frame[6] = (byte)Math.ceil(c1_rgb.getR());
-		frame[7] = (byte)Math.ceil(c1_rgb.getG());
-		frame[8] = (byte)Math.ceil(c1_rgb.getB());
+		frame[0] = (byte)Math.ceil(mClearDouble.get(2));
+
+		frame[4] =(byte)Math.ceil(mClearDouble.get(8));
+
+		frame[8] = (byte)Math.ceil(mClearDouble.get(12));
+
+
 
 
 		if (mVisualizerView != null) {
@@ -258,7 +232,7 @@ public class LedomaticService extends Service implements Runnable {
 			colors[0] = Color.rgb(frame[0], frame[1], frame[2]);
 			colors[1] = Color.rgb(frame[3], frame[4], frame[5]);
 			colors[2] = Color.rgb(frame[6], frame[7], frame[8]);
-			
+
 			if (mVisualizerView.isShown()){
 				mVisualizerView.updateVisualizer(colors);
 			}
