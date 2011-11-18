@@ -15,14 +15,14 @@ public class LedomaticLaunch extends Activity {
 		int maxExtent = Math.max(display.getWidth(), display.getHeight());
 
 		Intent intent = null;
-		if (maxExtent > 1200) {
-			Log.i(TAG, "starting tablet ui");
+	//	if (maxExtent > 1200) {
+			//Log.i(TAG, "starting tablet ui");
 			// TODO tablet support
 			// intent = new Intent(activity, LedomaticTablet.class);
-		} else {
+//		} else {
 			Log.i(TAG, "starting phone ui");
 			intent = new Intent(activity, LedomaticPhone.class);
-		}
+	//	}
 		return intent;
 	}
 	

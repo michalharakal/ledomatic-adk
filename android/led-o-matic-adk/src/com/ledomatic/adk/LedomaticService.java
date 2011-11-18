@@ -12,6 +12,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.media.audiofx.Visualizer;
 import android.os.IBinder;
 import android.os.ParcelFileDescriptor;
@@ -196,8 +197,7 @@ public class LedomaticService extends Service implements Runnable {
 
 	}
 	private byte[] mBytes;
-	/*private VisualizerView mVisualizerView;*/
-
+	
 	private byte getWeight(byte value, byte weight, byte shift) {
 		return (byte)((value & weight) >> shift);
 	}
@@ -208,44 +208,46 @@ public class LedomaticService extends Service implements Runnable {
 
 		mVisualizerView = VisualizerView.getInstance();
 
-		if (mVisualizerView != null) {
-
-			if (mVisualizerView.isShown()){
-				mVisualizerView.updateVisualizer(bytes);
-			}
-		}
+		
 
 
 		byte[] frame;
 		frame = new byte[9];
 		Arrays.fill(frame, (byte) 0);
-		byte red = mBytes[10];
-		byte green = 0;//getWeight(mBytes[10], (byte)0x1c, (byte)3);
-		byte blue = 0;//getWeight(mBytes[10], (byte)0x03, (byte)0);
+		int red = getWeight(mBytes[10], (byte)0xc0, (byte)6);
+		int green = getWeight(mBytes[10], (byte)0x1c, (byte)3);
+		int blue = getWeight(mBytes[10], (byte)0x03, (byte)0);
 
-		frame[0] = red;
-		frame[1] = green;
-		frame[2] = blue;
+		frame[0] = (byte)red;
+		frame[1] = (byte)green;
+		frame[2] = (byte)blue;
 
-		red = 0;// getWeight(mBytes[100], (byte)0xc0, (byte)6);
-		green = 0; // getWeight(mBytes[100], (byte)0x1c, (byte)3);
-		blue = mBytes[100];
+		red = getWeight(mBytes[100], (byte)0xc0, (byte)6);
+		green = getWeight(mBytes[100], (byte)0x1c, (byte)3);
+		blue = getWeight(mBytes[100], (byte)0x03, (byte)0);
 
-		frame[3] = red;
-		frame[4] = green;
-		frame[5] = blue;
+		frame[3] = (byte)red;
+		frame[4] = (byte)green;
+		frame[5] = (byte)blue;
 
-		red =  0;//getWeight(mBytes[200], (byte)0xc0, (byte)6);
-		green = mBytes[200];
-		blue = 0;//getWeight(mBytes[200], (byte)0x03, (byte)0);
+		red =  getWeight(mBytes[200], (byte)0xc0, (byte)6);
+		green = getWeight(mBytes[200], (byte)0x1c, (byte)3);
+		blue = getWeight(mBytes[200], (byte)0x03, (byte)0);
 
-		frame[6] = red;
-		frame[7] = green;
-		frame[8] = blue;
+		frame[6] = (byte)red;
+		frame[7] = (byte)green;
+		frame[8] = (byte)blue;
 
-
-
-
+		if (mVisualizerView != null) {
+			int[] colors = new int[3];
+			colors[0] = Color.rgb(frame[0], frame[1], frame[2]);
+			colors[1] = Color.rgb(frame[3], frame[4], frame[5]);
+			colors[2] = Color.rgb(frame[6], frame[7], frame[8]);
+			
+			if (mVisualizerView.isShown()){
+				mVisualizerView.updateVisualizer(colors);
+			}
+		}
 		sendCommand(frame);
 	}
 
